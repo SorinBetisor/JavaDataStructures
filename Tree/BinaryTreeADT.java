@@ -2,7 +2,8 @@ package Tree;
 
 public interface BinaryTreeADT<T>
 {
-    public boolean checkBST(Node<T> root);
+    public boolean checkBST(Node<T> root, int min, int max);
+    public boolean checkBSTWrapper(Node<T> root);
     public void traverseInOrder(Node<T> root);
     public Node<T> successor(Node<T> node);
     public Node<T> predecessor(Node<T> node);

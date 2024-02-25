@@ -9,8 +9,27 @@ public class BinaryTree<T> implements BinaryTreeADT<T> {
     }
 
     @Override
-    public boolean checkBST(Node<T> root) {
-        return false;
+    public boolean checkBST(Node<T> root, int min, int max) {
+        try {
+            if (root == null){
+                return true;}
+
+            if ((Integer) root.data < min || (Integer) root.data > max){
+                return false;}
+
+            return (checkBST(root.left, min, (Integer) root.data - 1) && checkBST(root.right, (Integer) root.data + 1, max)); //no equal values allowed
+
+        } 
+        catch (Exception e) // In case of root.data not being an integer
+        {
+            System.out.println("Data type not supported");
+            return false;
+        }
+    }
+
+    @Override
+    public boolean checkBSTWrapper(Node<T> root) {
+        return checkBST(root, Integer.MIN_VALUE, Integer.MAX_VALUE); // Assuming Integers
     }
 
     @Override
@@ -86,19 +105,14 @@ public class BinaryTree<T> implements BinaryTreeADT<T> {
         if (node.right == null && node.left == null && node.parent != null) {
             // if node is leaf, detach
             node.parent = null;
-        }
-        else
-        {
-            if(node.left != null)
-            {
+        } else {
+            if (node.left != null) {
                 Node<T> predecessor = predecessor(node);
                 T temp = node.data;
                 node.data = predecessor.data;
                 predecessor.data = temp;
                 subtree_delete(predecessor);
-            }
-            else
-            {
+            } else {
                 Node<T> successor = successor(node);
                 T temp = node.data;
                 node.data = successor.data;
