@@ -3,6 +3,8 @@ package Tree;
 public class BinaryTree<T> implements BinaryTreeADT<T> {
 
     public Node<T> root;
+    private int size;
+    private int height;
 
     public BinaryTree(T rootVal) {
         root = new Node<T>(rootVal);
@@ -144,6 +146,34 @@ public class BinaryTree<T> implements BinaryTreeADT<T> {
     @Override
     public boolean checkBSTWrapper(Node<T> root) {
         return checkBST(root, Integer.MIN_VALUE, Integer.MAX_VALUE); // Assuming Integers
+    }
+
+    @Override
+    public int computeHeight(Node<T> root) {
+        if(root == null)
+            return 0;
+        if(root.left == null && root.right == null)
+            return 1;
+        
+        int leftHeight = computeHeight(root.left);;
+        int rightHeight = computeHeight(root.right);
+        return 1 + Math.max(leftHeight, rightHeight);
+    }
+
+    @Override
+    public int getTreeHeight() {
+        height = computeHeight(root);
+        return height;
+    }
+
+    @Override
+    public void computeSize(Node<T> root) {
+        return;
+    }
+
+    @Override
+    public int getSize(Node<T> root) {
+        return size;
     }
 
 }

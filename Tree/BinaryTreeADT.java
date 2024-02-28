@@ -11,4 +11,8 @@ public interface BinaryTreeADT<T>
     public void subtree_insert_after(Node<T> node, Node<T> newNode);
     public void subtree_insert_before(Node<T> node, Node<T> newNode);
     public void subtree_delete(Node<T> node);
+    public int computeHeight(Node<T> root);
+    public int getTreeHeight();
+    public void computeSize(Node<T> root);
+    public int getSize(Node<T> root);
 }

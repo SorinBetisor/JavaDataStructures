@@ -7,7 +7,8 @@ public class Test {
         tree.root.left = new Node<Integer>(69);
         tree.subtree_insert_after(tree.root, new Node<Integer>(3));
         tree.subtree_insert_before(tree.root.right, new Node<Integer>(7));
-        tree.traverseInOrder(tree.root);
+        tree.subtree_insert_after(tree.root, new Node<Integer>(8));
 
+        System.out.println(tree.getTreeHeight());
     }
 }
